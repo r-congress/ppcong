@@ -1,0 +1,22 @@
+Package: ppc
+Title: Interfacing with ProPublica's Congress API
+Version: 0.0.1
+Authors@R: 
+    person(given = "First",
+           family = "Last",
+           role = c("aut", "cre"),
+           email = "first.last@example.com",
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: A simple interface for interacting with ProPublica's Congress API,
+    which provides data about current and former members of both chambers of the
+    U.S. Congress.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+Imports: 
+    curl,
+    tfse,
+    jsonlite,
+    tibble
+RoxygenNote: 6.1.1

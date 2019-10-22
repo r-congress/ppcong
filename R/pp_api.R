@@ -1,0 +1,105 @@
+pp_check_status <- function(r) {
+  if ("status_code" %in% names(r)) {
+    r <- r$status_code
+  }
+  if (r == 200) {
+    return(invisible(TRUE))
+  }
+  warning(switch(as.character(r),
+    `400` = "400 	Bad Request - Your request is improperly formed",
+    `403` = "403 	Forbidden - Your request did not include an authorization header",
+    `404` = "404 	Not Found - The specified record(s) could not be found",
+    `406` = "406 	Not Acceptable - You requested a format that isn't json or xml",
+    `500` = "500 	Internal Server Error - We had a problem with our server. Try again later.",
+    `503` = "503 	Service Unavailable - The service is currently not working. Please try again later."
+  ), call. = FALSE)
+  invisible(FALSE)
+}
+
+pp_congress_handle <- function(api_key = NULL) {
+  ## initialize new handle
+  h <- curl::new_handle()
+
+  ## set api key header [and return handle]
+  curl::handle_setheaders(h, `X-API-Key` = pp_api_key(api_key))
+}
+
+#' Set ProPublica API key
+#'
+#' Stores ProPublica API key as an environment variable for current and/or
+#' future sessions
+#'
+#' @param api_key The actual API key string provided by ProPublica..
+#' @param set_renv Logical indicating whether to append the environment variable
+#'   to the home directory's ".Renviron" file. This requires directory
+#'   permission, but it will ensure that future sessions automatically find the
+#'   token. The default is FALSE (do NOT set in ~/.Renviron).
+#' @return the API key string
+#' @examples
+#'
+#' ## this is not a real key
+#' pp_api_key("as9d78f6aayd9fy2fq378a9ds876fsas89d7f")
+#'
+#' @export
+pp_api_key <- function(api_key = NULL, set_renv = FALSE) {
+  if (!is.null(api_key)) {
+    stopifnot(
+      is.character(api_key),
+      length(api_key) == 1
+    )
+    Sys.setenv(PROPUBLICA_API_KEY = api_key)
+    if (set_renv) {
+      tfse::set_renv(PROPUBLICA_API_KEY = api_key)
+    }
+    return(api_key)
+  }
+  if ((api_key <- Sys.getenv("PROPUBLICA_API_KEY")) == "") {
+    stop("This requires an API key. See: " %P%
+        "https://www.propublica.org/datastore/api/propublica-congress-api" %P%
+        " for more information",
+      call. = FALSE)
+  }
+  api_key
+}
+
+## build the call URL
+pp_congress_call <- function(congress = "116",
+  chamber = "senate") {
+  stopifnot(
+    is_congress_number(congress)
+  )
+  pp_base() %P% as_congress_number(congress) %P% "/" %P% chamber %P% "/members.json"
+}
+
+## validation function for congress number
+is_congress_number <- function(x) {
+  is.atomic(x) && length(x) == 1 && grepl("^1\\d{2}(th|st|rd|nd)?$", x)
+}
+as_congress_number <- function(x) {
+  sub("(?<=\\d)[[:alpha:]]+$", "", x, perl = TRUE)
+}
+## specify/set propublica API version
+pp_set_version <- function(version = "v1") {
+  if (!grepl("^v", version)) {
+    version <- paste0("v", version)
+  }
+  options(congress116.pp_version = version)
+}
+
+## get propublica API version
+pp_get_version <- function() {
+  if (!is.null(version <- getOption("congress116.pp_version"))) {
+    if (!grepl("^v", version)) {
+      version <- paste0("v", version)
+    }
+    return(version)
+  }
+  pp_set_version("v1")
+  "v1"
+}
+
+## base URL for propublica API call
+pp_base <- function() {
+  version <- pp_get_version()
+  "https://api.propublica.org/congress/" %P% version %P% "/"
+}
