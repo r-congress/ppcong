@@ -18,6 +18,8 @@ library(ppc)
 # ppc
 
 <!-- badges: start -->
+[![Travis build status](https://travis-ci.org/mkearney/ppc.svg?branch=master)](https://travis-ci.org/mkearney/ppc)
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/mkearney/ppc?branch=master&svg=true)](https://ci.appveyor.com/project/mkearney/ppc)
 <!-- badges: end -->
 
 A simple interface for interacting with [ProPublica's Congress API](https://projects.propublica.org/api-docs/congress-api/), which 
