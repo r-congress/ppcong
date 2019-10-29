@@ -2,7 +2,7 @@ test_that("pp_congress works", {
   ##skips tests on CRAN, using the NOT_CRAN environment variable set by devtools
   skip_on_cran()
   ##skips tests on continuous integration systems by inspecting the CI environment variabl
-  skip_on_ci()
+  #skip_on_ci()
 
   ## get data frame
   gas1 <- pp_congress(congress = "116",
