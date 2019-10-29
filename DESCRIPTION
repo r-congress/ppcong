@@ -1,12 +1,15 @@
 Package: ppc
 Title: Interfacing with ProPublica's Congress API
 Version: 0.0.1
-Authors@R: 
-    person(given = "First",
-           family = "Last",
-           role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+Authors@R: c(
+    person("Michael W.", "Kearney", ,
+      email = "kearneymw@missouri.edu", role = c("aut", "cre"),
+      comment = c(ORCID = "0000-0002-0730-4694")),
+    person("Lingshu", "Hu", ,
+      role = c("ctb")),
+    person("Alevia", "Iuliia", ,
+      role = c("ctb"))
+    )
 Description: A simple interface for interacting with ProPublica's Congress API,
     which provides data about current and former members of both chambers of the
     U.S. Congress.

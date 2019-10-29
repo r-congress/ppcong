@@ -1,7 +1,7 @@
 pp_parse_votes <- function(x) {
   if (length(x$results$votes) == 0) return(tibble::tibble())
   tibble::as_tibble(cbind(cbind(
-    cbind(x$results$votes[dapr::vap_lgl(x$results$votes, is.atomic)],
+    cbind(x$results$votes[sapply(x$results$votes, is.atomic)],
       `names<-`(x$results$votes$democratic, "d_" %P% names(x$results$votes$democratic))),
     `names<-`(x$results$votes$republican, "r_" %P% names(x$results$votes$republican))),
     `names<-`(x$results$votes$independent, "i_" %P% names(x$results$votes$independent))))
