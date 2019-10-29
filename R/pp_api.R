@@ -53,13 +53,26 @@ pp_api_key <- function(api_key = NULL, set_renv = FALSE) {
     }
     return(api_key)
   }
-  if ((api_key <- Sys.getenv("PROPUBLICA_API_KEY")) == "") {
+  if ((api_key <- pp_find_api_key()) == "") {
     stop("This requires an API key. See: " %P%
         "https://www.propublica.org/datastore/api/propublica-congress-api" %P%
         " for more information",
       call. = FALSE)
   }
   api_key
+}
+
+pp_find_api_key <- function() {
+  if ((key <- Sys.getenv("PROPUBLICA_API_KEY")) != "") {
+    return(key)
+  }
+  key <- c(Sys.getenv(c("PP_API_KEY")),
+    system("echo $PROPUBLICA_API_KEY", intern = TRUE),
+    system("echo $PP_API_KEY", intern = TRUE))
+  if (all(key == "")) {
+    return("")
+  }
+  key[key != ""][1]
 }
 
 ## build the call URL

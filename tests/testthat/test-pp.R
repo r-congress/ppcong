@@ -23,9 +23,9 @@ test_that("pp_congress works", {
   expect_true(is.list(gas2))
   expect_gt(length(gas2), 1) ## check if the list length is greater than 1
 
-  expect_error(
-    pp_congress() ## no api_key
-  )
+  expect_true(is.data.frame(expect_warning(
+    pp_congress(api_key = "") ## no api_key
+  )))
 
   expect_error(
     scrape_one_post(api_key = "KrzMLGjWe1bQGxoO9MUv8ruhMI63hpKIo") ## wrong api_key
