@@ -7,7 +7,6 @@ test_that("pp_congress works", {
   ## get data frame
   gas1 <- pp_congress(congress = "116",
                       chamber = "senate",
-                      api_key = "KrzMLGjWe1bQGxoO9MUv8ruhMI63hpKIo0OMTNxJ",
                       raw = FALSE)
 
   expect_true(is.data.frame(gas1))
@@ -17,7 +16,6 @@ test_that("pp_congress works", {
   ## get raw data (a list)
   gas2 <- pp_congress(congress = "116",
                       chamber = "senate",
-                      api_key = "KrzMLGjWe1bQGxoO9MUv8ruhMI63hpKIo0OMTNxJ",
                       raw = TRUE)
 
   expect_true(is.list(gas2))
@@ -27,9 +25,6 @@ test_that("pp_congress works", {
     pp_congress(api_key = "") ## no api_key
   )))
 
-  expect_error(
-    scrape_one_post(api_key = "KrzMLGjWe1bQGxoO9MUv8ruhMI63hpKIo") ## wrong api_key
-  )
 })
 
 
@@ -39,7 +34,7 @@ test_that("pp_api works", {
   ##skips tests on continuous integration systems by inspecting the CI environment variabl
   #skip_on_ci()
 
-  ## get data frame
+  ## get key
   api <- pp_api_key()
 
   expect_true(is.character(api))

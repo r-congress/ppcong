@@ -42,23 +42,29 @@ pp_congress_handle <- function(api_key = NULL) {
 #'
 #' @export
 pp_api_key <- function(api_key = NULL, set_renv = FALSE) {
-  if (!is.null(api_key)) {
-    stopifnot(
-      is.character(api_key),
-      length(api_key) == 1
-    )
+  ## find environ var if not supplied
+  api_key <- api_key %||% pp_find_api_key()
+
+  ## validate
+  stop_if_not(
+    is.character(api_key) &&
+    length(api_key) == 1 &&
+    api_key != "",
+    msg_append = "This requires an API key. For more information see: " %P%
+      "https://www.propublica.org/datastore/api/propublica-congress-api"
+  )
+
+  ## set if not
+  if (Sys.getenv("PROPUBLICA_API_KEY") == "") {
     Sys.setenv(PROPUBLICA_API_KEY = api_key)
-    if (set_renv) {
-      tfse::set_renv(PROPUBLICA_API_KEY = api_key)
-    }
-    return(api_key)
   }
-  if ((api_key <- pp_find_api_key()) == "") {
-    stop("This requires an API key. See: " %P%
-        "https://www.propublica.org/datastore/api/propublica-congress-api" %P%
-        " for more information",
-      call. = FALSE)
+
+  ## save for future sessions
+  if (set_renv) {
+    tfse::set_renv(PROPUBLICA_API_KEY = api_key)
   }
+
+  ## return
   api_key
 }
 
