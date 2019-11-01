@@ -13,6 +13,8 @@ status](https://ci.appveyor.com/api/projects/status/github/mkearney/ppc?branch=m
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/ppc)](https://CRAN.R-project.org/package=ppc)
+[![Codecov test
+coverage](https://codecov.io/gh/mkearney/ppc/branch/master/graph/badge.svg)](https://codecov.io/gh/mkearney/ppc?branch=master)
 <!-- badges: end -->
 
 A simple interface for interacting with [ProPublica’s Congress
