@@ -37,11 +37,10 @@ test_that("pp_api works", {
   ##skips tests on CRAN, using the NOT_CRAN environment variable set by devtools
   skip_on_cran()
   ##skips tests on continuous integration systems by inspecting the CI environment variabl
-  skip_on_ci()
+  #skip_on_ci()
 
   ## get data frame
-  api <- pp_api_key(api_key = "KrzMLGjWe1bQGxoO9MUv8ruhMI63hpKIo",
-                    set_renv = FALSE)
+  api <- pp_api_key()
 
   expect_true(is.character(api))
   expect_equal(length(api), 1) ## check if the length of api equals 1
