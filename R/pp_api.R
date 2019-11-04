@@ -76,7 +76,8 @@ pp_find_api_key <- function() {
     system("echo $PROPUBLICA_API_KEY", intern = TRUE),
     system("echo $PP_API_KEY", intern = TRUE))
   if (all(key == "")) {
-    return("")
+    key <- pp_find_config_key()
+    return(key)
   }
   key[key != ""][1]
 }
@@ -103,6 +104,33 @@ pp_set_version <- function(version = "v1") {
     version <- paste0("v", version)
   }
   options(congress116.pp_version = version)
+}
+
+## this looks for api keys saved in config.yml files (which appears to be how
+## ProPublicaR is implemented)
+pp_find_config_key <- function() {
+  configs <- unique(c(Sys.getenv("R_CONFIG_FILE", "config.yml"), "config.yml",
+    "../config.yml", "../../config.yml"), "../../../config.yml")
+  configs <- configs[file.exists(configs)]
+  x <- ""
+  for (i in seq_along(configs)) {
+    con <- file(configs[i], "r")
+    x <- readLines(con, warn = FALSE)
+    x <- readLines("config.yml")
+    if (any(grepl("propublica", x, ignore.case = TRUE))) {
+      x <- grep("propublica", x, ignore.case = TRUE, value = TRUE)
+      x <- sub(".*propublica\\S{0,}", "", x, ignore.case = TRUE)
+      m <- regexpr("[[:alnum:]]{30,50}", x)
+      x <- regmatches(x, m)
+      close(con)
+      break
+    }
+    close(con)
+  }
+  if (length(x) == 0) {
+    x <- ""
+  }
+  x
 }
 
 ## get propublica API version

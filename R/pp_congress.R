@@ -5,22 +5,21 @@
 #'
 #' @param congress The number of Congress of interest
 #' @param chamber Either "house" or "senate"
-#' @param api_key The actual API key string provided by ProPublica..
+#' @param api_key The actual API key string provided by ProPublica.
 #' @param raw Logical indicating whether to return the raw response object. The
 #'   default (FALSE) parses the content and returns a tibble data frame.
 #' @return Depending on the raw parameter, this function returns a tibble data
 #'   frame with member information or the response object returned by curl
 #'
 #' @details
-#' Description about the rpocess goes here
 #'
-#' To get ProPublica API key you should go to this link
+#' To apply for a ProPublica API use the following link:
 #' \url{https://www.propublica.org/datastore/api/propublica-congress-api}.
-#' Submit a form you see on the right and you will receive your API key
+#' Complete and submit the provided form to receive your API key.
 #'
 #' @examples
 #' \dontrun{
-#' ## get data on house for 116th congress (requires api key)
+#' ## get data on house for 116th congress (requires API key)
 #' h116 <- pp_congress(congress = "116", chamber = "house")
 #' }
 #' @seealso \url{https://projects.propublica.org/api-docs/congress-api/}
