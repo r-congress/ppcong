@@ -1,4 +1,4 @@
 library(testthat)
-library(ppccong)
+library(ppcong)
 
 test_check("ppcong")
