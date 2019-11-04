@@ -13,16 +13,16 @@ knitr::opts_chunk$set(
 )
 
 options(width = 90)
-library(ppc)
+library(ppcong)
 ```
-# ppc <img src="man/figures/logo.png" width="160px" align="right" />
+# ppcong <img src="man/figures/logo.png" width="160px" align="right" />
 
 <!-- badges: start -->
-[![Travis build status](https://travis-ci.org/mkearney/ppc.svg?branch=master)](https://travis-ci.org/mkearney/ppc)
-[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/mkearney/ppc?branch=master&svg=true)](https://ci.appveyor.com/project/mkearney/ppc)
+[![Travis build status](https://travis-ci.org/mkearney/ppcong.svg?branch=master)](https://travis-ci.org/mkearney/ppcong)
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/mkearney/ppcong?branch=master&svg=true)](https://ci.appveyor.com/project/mkearney/ppcong)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-[![CRAN status](https://www.r-pkg.org/badges/version/ppc)](https://CRAN.R-project.org/package=ppc)
-[![Codecov test coverage](https://codecov.io/gh/mkearney/ppc/branch/master/graph/badge.svg)](https://codecov.io/gh/mkearney/ppc?branch=master)
+[![CRAN status](https://www.r-pkg.org/badges/version/ppcong)](https://CRAN.R-project.org/package=ppcong)
+[![Codecov test coverage](https://codecov.io/gh/mkearney/ppcong/branch/master/graph/badge.svg)](https://codecov.io/gh/mkearney/ppcong?branch=master)
 <!-- badges: end -->
 
 A simple interface for interacting with [ProPublica's Congress API](https://projects.propublica.org/api-docs/congress-api/), which 
@@ -31,17 +31,17 @@ Congress.
 
 ## Installation
 
-You can install the released version of ppc from [CRAN](https://CRAN.R-project.org) with:
+You can install the released version of ppcong from [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-install.packages("ppc")
+install.packages("ppcong")
 ```
 
 And the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("mkearney/ppc")
+remotes::install_github("mkearney/ppcong")
 ```
 
 ## Examples

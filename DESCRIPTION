@@ -1,4 +1,4 @@
-Package: ppc
+Package: ppcong
 Title: Interfacing with ProPublica's Congress API
 Version: 0.0.1
 Authors@R: c(
@@ -25,8 +25,8 @@ Imports:
     jsonlite,
     tibble
 RoxygenNote: 6.1.1
-URL: https://github.com/mkearney/ppc
-BugReports: https://github.com/mkearney/ppc/issues
+URL: https://github.com/mkearney/ppcong
+BugReports: https://github.com/mkearney/ppcong/issues
 Suggests: 
     testthat (>= 2.1.0),
     covr

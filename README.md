@@ -1,20 +1,20 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# ppc <img src="man/figures/logo.png" width="160px" align="right" />
+# ppcong <img src="man/figures/logo.png" width="160px" align="right" />
 
 <!-- badges: start -->
 
 [![Travis build
-status](https://travis-ci.org/mkearney/ppc.svg?branch=master)](https://travis-ci.org/mkearney/ppc)
+status](https://travis-ci.org/mkearney/ppcong.svg?branch=master)](https://travis-ci.org/mkearney/ppcong)
 [![AppVeyor build
-status](https://ci.appveyor.com/api/projects/status/github/mkearney/ppc?branch=master&svg=true)](https://ci.appveyor.com/project/mkearney/ppc)
+status](https://ci.appveyor.com/api/projects/status/github/mkearney/ppcong?branch=master&svg=true)](https://ci.appveyor.com/project/mkearney/ppcong)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![CRAN
-status](https://www.r-pkg.org/badges/version/ppc)](https://CRAN.R-project.org/package=ppc)
+status](https://www.r-pkg.org/badges/version/ppcong)](https://CRAN.R-project.org/package=ppcong)
 [![Codecov test
-coverage](https://codecov.io/gh/mkearney/ppc/branch/master/graph/badge.svg)](https://codecov.io/gh/mkearney/ppc?branch=master)
+coverage](https://codecov.io/gh/mkearney/ppcong/branch/master/graph/badge.svg)](https://codecov.io/gh/mkearney/ppcong?branch=master)
 <!-- badges: end -->
 
 A simple interface for interacting with [ProPublica’s Congress
@@ -24,18 +24,18 @@ U.S. Congress.
 
 ## Installation
 
-You can install the released version of ppc from
+You can install the released version of ppcong from
 [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-install.packages("ppc")
+install.packages("ppcong")
 ```
 
 And the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("mkearney/ppc")
+remotes::install_github("mkearney/ppcong")
 ```
 
 ## Examples
