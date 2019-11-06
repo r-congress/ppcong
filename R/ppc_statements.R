@@ -2,6 +2,8 @@
 #'
 #' Get Recent Congressional Statements
 #'
+#' @param date Day from which statements should be collected; should follow the
+#'   format of YYYY-MM-DD.
 #' @inheritParams ppc_members
 #' @examples
 #' \dontrun{

@@ -7,6 +7,9 @@
 ppc_statements(date = NULL, api_key = NULL, raw = FALSE)
 }
 \arguments{
+\item{date}{Day from which statements should be collected; should follow the
+format of YYYY-MM-DD.}
+
 \item{api_key}{The actual API key string provided by ProPublica.}
 
 \item{raw}{Logical indicating whether to return the raw response object. The
