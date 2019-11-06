@@ -1,5 +1,5 @@
 
-ppc_make_req <- function(url, api_key = NULL, raw = FALSE) {
+ppc_make_req <- function(url, api_key, raw) {
   ## make request
   r <- curl::curl_fetch_memory(url, ppc_handle(api_key))
 
@@ -101,13 +101,7 @@ ppc_find_api_key <- function() {
 }
 
 
-## validation function for congress number
-is_congress_number <- function(x) {
-  is.atomic(x) && length(x) == 1 && grepl("^1\\d{2}(th|st|rd|nd)?$", x)
-}
-as_congress_number <- function(x) {
-  sub("(?<=\\d)[[:alpha:]]+$", "", x, perl = TRUE)
-}
+
 ## specify/set propublica API version
 ppc_set_version <- function(version = "v1") {
   if (!grepl("^v", version)) {

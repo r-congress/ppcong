@@ -4,7 +4,7 @@
 \alias{ppc_statements}
 \title{Statements}
 \usage{
-ppc_statements(offset = 0, api_key = NULL, raw = FALSE)
+ppc_statements(date = NULL, api_key = NULL, raw = FALSE)
 }
 \arguments{
 \item{api_key}{The actual API key string provided by ProPublica.}

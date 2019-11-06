@@ -44,7 +44,7 @@ And the development version from [GitHub](https://github.com/) with:
 remotes::install_github("mkearney/ppcong")
 ```
 
-## Examples
+## Members
 
 Get "house" data from the "116"th Congress:
 
@@ -60,6 +60,26 @@ Get "senate" data from the "110"th Congress:
 ## get and preview senate data from 110th congress
 s110 <- ppc_members(congress = "110", chamber = "senate")
 s110
+```
+
+## Statements
+
+Get statements released by members of Congress by date
+
+```{r}
+## get and preview statements from congress on a given day
+sts <- ppc_statements("2017-05-08")
+sts
+```
+
+## Votes
+
+Get statements released by members of Congress by date
+
+```{r}
+## get and preview house data from 116th congress
+vts <- ppc_votes()
+vts
 ```
 
 ## API Key
