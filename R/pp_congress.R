@@ -20,43 +20,23 @@
 #' @examples
 #' \dontrun{
 #' ## get data on house for 116th congress (requires API key)
-#' h116 <- pp_congress(congress = "116", chamber = "house")
+#' h116 <- ppc_congress(congress = "116", chamber = "house")
 #' }
 #' @seealso \url{https://projects.propublica.org/api-docs/congress-api/}
 #' @export
-pp_congress <- function(congress = "116",
-                        chamber = "senate",
+ppc_members <- function(congress = "116",
+                        chamber = c("house", "senate"),
                         api_key = NULL,
                         raw = FALSE) {
+  ## process API request
+  ppc_make_req(ppc_members_call(congress, chamber), api_key, raw)
+}
 
-  ## make request
-  r <- curl::curl_fetch_memory(
-    pp_congress_call(congress, chamber),
-    pp_congress_handle(api_key)
+
+## build the call URL
+ppc_members_call <- function(congress = "116", chamber = c("house", "senate")) {
+  stopifnot(
+    is_congress_number(congress)
   )
-
-  ## check status / print warning if status!=200
-  pp_check_status(r)
-
-  ## if raw then return response object
-  if (raw) {
-    return(r)
-  }
-
-  ## parsing: get response headers
-  headers <- pp_headers(r)
-
-  ## parsing: convert returned JSON data into tibble
-  d <- pp_parse_data(r)
-
-  ## parsing: store headers as attribute
-  attr(d, "headers") <- headers
-
-  ## parsing: add request timestamp variable
-  if (nrow(d) > 0) {
-    d$pp_request_timestamp <- pp_request_timestamp(headers)
-  }
-
-  ## return data
-  d
+  ppc_base() %P% as_congress_number(congress) %P% "/" %P% match.arg(chamber) %P% "/members.json"
 }

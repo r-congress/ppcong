@@ -50,7 +50,7 @@ Get "house" data from the "116"th Congress:
 
 ```{r}
 ## get and preview house data from 116th congress
-h116 <- pp_congress(congress = "116", chamber = "house")
+h116 <- ppc_members(congress = "116", chamber = "house")
 h116
 ```
 
@@ -58,7 +58,7 @@ Get "senate" data from the "110"th Congress:
 
 ```{r}
 ## get and preview senate data from 110th congress
-s110 <- pp_congress(congress = "110", chamber = "senate")
+s110 <- ppc_members(congress = "110", chamber = "senate")
 s110
 ```
 
@@ -71,15 +71,15 @@ following URL: https://www.propublica.org/datastore/api/propublica-congress-api
 Once you've obtained an API key, you can either include it in every request, e.g.,
 ``` r
 ## include API key in request
-s116 <- pp_congress(116, "senate", api_key = "as9d78f6aayd9fy2fq378a9ds876fsas89d7f")
+s116 <- ppc_members(116, "senate", api_key = "as9d78f6aayd9fy2fq378a9ds876fsas89d7f")
 ```
 
 Or for the duration of any given session, you can set the API key once via the
-`pp_api_key()` function
+`ppc_api_key()` function
 
 ``` r
 ## set as environment variable for the remainder of current session
-pp_api_key("as9d78f6aayd9fy2fq378a9ds876fsas89d7f")
+ppc_api_key("as9d78f6aayd9fy2fq378a9ds876fsas89d7f")
 ```
 
 If you'd like to set the API key and store it for use in future sessions, use 
@@ -87,6 +87,6 @@ If you'd like to set the API key and store it for use in future sessions, use
 
 ``` r
 ## append as environment variable in user's home .Renviron file
-pp_api_key("as9d78f6aayd9fy2fq378a9ds876fsas89d7f", set_renv = TRUE)
+ppc_api_key("as9d78f6aayd9fy2fq378a9ds876fsas89d7f", set_renv = TRUE)
 ```
 

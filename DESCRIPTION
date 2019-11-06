@@ -12,9 +12,9 @@ Authors@R: c(
       role = c("ctb"),
       comment = c(ORCID = "0000-0001-6270-8985"))
     )
-Description: A simple interface for interacting with ProPublica's Congress API,
+Description: A simple interface for interacting with ProPublica's 'Congress' API,
     which provides data about current and former members of both chambers of the
-    U.S. Congress and cound be found at the following URL: <https://projects.propublica.org/api-docs/congress-api/>.
+    U.S. Congress and can be found at the following URL: <https://projects.propublica.org/api-docs/congress-api/>.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

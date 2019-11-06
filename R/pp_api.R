@@ -1,4 +1,22 @@
-pp_check_status <- function(r) {
+
+ppc_make_req <- function(url, api_key = NULL, raw = FALSE) {
+  ## make request
+  r <- curl::curl_fetch_memory(url, ppc_handle(api_key))
+
+  ## check status / print warning if status!=200
+  ppc_check_status(r)
+
+  ## if raw then return response object
+  if (raw) {
+    return(r)
+  }
+
+  ## parse and return
+  ppc_parse_data(r)
+}
+
+
+ppc_check_status <- function(r) {
   if ("status_code" %in% names(r)) {
     r <- r$status_code
   }
@@ -16,12 +34,12 @@ pp_check_status <- function(r) {
   invisible(FALSE)
 }
 
-pp_congress_handle <- function(api_key = NULL) {
+ppc_handle <- function(api_key = NULL) {
   ## initialize new handle
   h <- curl::new_handle()
 
   ## set api key header [and return handle]
-  curl::handle_setheaders(h, `X-API-Key` = pp_api_key(api_key))
+  curl::handle_setheaders(h, `X-API-Key` = ppc_api_key(api_key))
 }
 
 #' Set ProPublica API key
@@ -38,21 +56,21 @@ pp_congress_handle <- function(api_key = NULL) {
 #' @examples
 #'
 #' ## this is not a real key
-#' pp_api_key("as9d78f6aayd9fy2fq378a9ds876fsas89d7f")
+#' ppc_api_key("as9d78f6aayd9fy2fq378a9ds876fsas89d7f")
 #'
 #' @export
-pp_api_key <- function(api_key = NULL, set_renv = FALSE) {
+ppc_api_key <- function(api_key = NULL, set_renv = FALSE) {
   ## find environ var if not supplied
-  api_key <- api_key %||% pp_find_api_key()
+  api_key <- api_key %||% ppc_find_api_key()
 
   ## validate
-  stop_if_not(
-    is.character(api_key) &&
+  if (!(is.character(api_key) &&
     length(api_key) == 1 &&
-    api_key != "",
-    msg_append = "This requires an API key. For more information see: " %P%
-      "https://www.propublica.org/datastore/api/propublica-congress-api"
-  )
+    api_key != "")) {
+    stop("This requires an API key. For more information see: " %P%
+        "https://www.propublica.org/datastore/api/propublica-congress-api",
+      call. = FALSE)
+  }
 
   ## set if not
   if (Sys.getenv("PROPUBLICA_API_KEY") == "") {
@@ -68,7 +86,7 @@ pp_api_key <- function(api_key = NULL, set_renv = FALSE) {
   api_key
 }
 
-pp_find_api_key <- function() {
+ppc_find_api_key <- function() {
   if ((key <- Sys.getenv("PROPUBLICA_API_KEY")) != "") {
     return(key)
   }
@@ -76,20 +94,12 @@ pp_find_api_key <- function() {
     system("echo $PROPUBLICA_API_KEY", intern = TRUE),
     system("echo $PP_API_KEY", intern = TRUE))
   if (all(key == "")) {
-    key <- pp_find_config_key()
+    key <- ppc_find_config_key()
     return(key)
   }
   key[key != ""][1]
 }
 
-## build the call URL
-pp_congress_call <- function(congress = "116",
-  chamber = "senate") {
-  stopifnot(
-    is_congress_number(congress)
-  )
-  pp_base() %P% as_congress_number(congress) %P% "/" %P% chamber %P% "/members.json"
-}
 
 ## validation function for congress number
 is_congress_number <- function(x) {
@@ -99,16 +109,16 @@ as_congress_number <- function(x) {
   sub("(?<=\\d)[[:alpha:]]+$", "", x, perl = TRUE)
 }
 ## specify/set propublica API version
-pp_set_version <- function(version = "v1") {
+ppc_set_version <- function(version = "v1") {
   if (!grepl("^v", version)) {
     version <- paste0("v", version)
   }
-  options(congress116.pp_version = version)
+  options(congress116.ppc_version = version)
 }
 
 ## this looks for api keys saved in config.yml files (which appears to be how
 ## ProPublicaR is implemented)
-pp_find_config_key <- function() {
+ppc_find_config_key <- function() {
   configs <- unique(c(Sys.getenv("R_CONFIG_FILE", "config.yml"), "config.yml",
     "../config.yml", "../../config.yml"), "../../../config.yml")
   configs <- configs[file.exists(configs)]
@@ -134,19 +144,19 @@ pp_find_config_key <- function() {
 }
 
 ## get propublica API version
-pp_get_version <- function() {
-  if (!is.null(version <- getOption("congress116.pp_version"))) {
+ppc_get_version <- function() {
+  if (!is.null(version <- getOption("congress116.ppc_version"))) {
     if (!grepl("^v", version)) {
       version <- paste0("v", version)
     }
     return(version)
   }
-  pp_set_version("v1")
+  ppc_set_version("v1")
   "v1"
 }
 
 ## base URL for propublica API call
-pp_base <- function() {
-  version <- pp_get_version()
+ppc_base <- function() {
+  version <- ppc_get_version()
   "https://api.propublica.org/congress/" %P% version %P% "/"
 }

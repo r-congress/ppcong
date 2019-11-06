@@ -1,11 +1,11 @@
-test_that("pp_congress works", {
+test_that("ppc_members works", {
   ##skips tests on CRAN, using the NOT_CRAN environment variable set by devtools
   skip_on_cran()
   ##skips tests on continuous integration systems by inspecting the CI environment variabl
   #skip_on_ci()
 
   ## get data frame
-  gas1 <- pp_congress(congress = "116",
+  gas1 <- ppc_members(congress = "116",
                       chamber = "senate",
                       raw = FALSE)
 
@@ -14,7 +14,7 @@ test_that("pp_congress works", {
   expect_gt(nrow(gas1), 2) ## check if # of rows is greater than 2
 
   ## get raw data (a list)
-  gas2 <- pp_congress(congress = "116",
+  gas2 <- ppc_members(congress = "116",
                       chamber = "senate",
                       raw = TRUE)
 
@@ -22,25 +22,25 @@ test_that("pp_congress works", {
   expect_gt(length(gas2), 1) ## check if the list length is greater than 1
 
   expect_error(
-    pp_congress(api_key = "") ## no api_key
+    ppc_members(api_key = "") ## no api_key
   )
 
 })
 
 
-test_that("pp_api works", {
+test_that("ppc_api works", {
   ##skips tests on CRAN, using the NOT_CRAN environment variable set by devtools
   skip_on_cran()
   ##skips tests on continuous integration systems by inspecting the CI environment variabl
   #skip_on_ci()
 
   ## get key
-  api <- pp_api_key()
+  api <- ppc_api_key()
 
   expect_true(is.character(api))
   expect_equal(length(api), 1) ## check if the length of api equals 1
 
   expect_error(
-    pp_api_key(api_key = 123) ## api is a number
+    ppc_api_key(api_key = 123) ## api is a number
   )
 })
