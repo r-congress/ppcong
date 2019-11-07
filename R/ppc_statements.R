@@ -16,7 +16,7 @@ ppc_statements <- function(date = NULL, api_key = NULL, raw = FALSE) {
 }
 
 ppc_statements_ <- function(date = NULL, offset = 0, api_key = NULL, raw = FALSE) {
-  ppc_make_req(ppc_statements_call(date, offset), api_key, raw)
+  ppc_request(ppc_statements_call(date, offset), api_key, raw)
 }
 
 ppc_statements_call <- function(date, offset) {
@@ -54,4 +54,15 @@ ppc_statements_all_day <- function(x, api_key, raw) {
   d <- do.call("rbind", d)
   attr(d, "headers") <- d
   d
+}
+
+
+ppc_parse_statements <- function(r) {
+  headers <- ppc_headers(r)
+  d <- ppc_parse_results(r)
+  attr(d, "headers") <- headers
+  if (nrow(d) > 0) {
+    d$ppc_request_timestamp <- ppc_request_timestamp(headers)
+  }
+  tibble::as_tibble(d)
 }

@@ -11,8 +11,8 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
-
-options(width = 90)
+tibble:::op.tibble
+options(width = 90, tibble.print_min = 5, tibble.print_max = 5)
 library(ppcong)
 ```
 # ppcong <img src="man/figures/logo.png" width="160px" align="right" />
@@ -81,6 +81,29 @@ Get statements released by members of Congress by date
 vts <- ppc_votes()
 vts
 ```
+
+
+## Bills
+
+Search for bills in Congress
+
+```{r}
+## get and preview house data from 116th congress
+bls <- ppc_bills()
+bls
+```
+
+
+## Committees
+
+Get lists of congressional committees
+
+```{r}
+## get and preview house data from 116th congress
+cmt <- ppc_committees()
+cmt
+```
+
 
 ## API Key
 

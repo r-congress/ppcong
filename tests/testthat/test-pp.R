@@ -1,8 +1,6 @@
 test_that("ppc_members works", {
   ##skips tests on CRAN, using the NOT_CRAN environment variable set by devtools
   skip_on_cran()
-  ##skips tests on continuous integration systems by inspecting the CI environment variabl
-  #skip_on_ci()
 
   ## get data frame
   gas1 <- ppc_members(congress = "116",
@@ -43,4 +41,56 @@ test_that("ppc_api works", {
   expect_error(
     ppc_api_key(api_key = 123) ## api is a number
   )
+})
+
+
+test_that("ppc_committees works", {
+  ##skips tests on CRAN, using the NOT_CRAN environment variable set by devtools
+  skip_on_cran()
+
+  ## get data frame
+  cmt <- ppc_committees()
+
+  expect_true(is.data.frame(cmt))
+  expect_gt(ncol(cmt), 2) ## check if # of columns is greater than 2
+  expect_gt(nrow(cmt), 2) ## check if # of rows is greater than 2
+})
+
+
+test_that("ppc_votes works", {
+  ##skips tests on CRAN, using the NOT_CRAN environment variable set by devtools
+  skip_on_cran()
+
+  ## get data frame
+  x <- ppc_votes()
+
+  expect_true(is.data.frame(x))
+  expect_gt(ncol(x), 2) ## check if # of columns is greater than 2
+  expect_gt(nrow(x), 2) ## check if # of rows is greater than 2
+})
+
+
+test_that("ppc_bills works", {
+  ##skips tests on CRAN, using the NOT_CRAN environment variable set by devtools
+  skip_on_cran()
+
+  ## get data frame
+  x <- ppc_bills()
+
+  expect_true(is.data.frame(x))
+  expect_gt(ncol(x), 2) ## check if # of columns is greater than 2
+  expect_gt(nrow(x), 2) ## check if # of rows is greater than 2
+})
+
+
+test_that("ppc_statements works", {
+  ##skips tests on CRAN, using the NOT_CRAN environment variable set by devtools
+  skip_on_cran()
+
+  ## get data frame
+  x <- ppc_statements("2017-05-08")
+
+  expect_true(is.data.frame(x))
+  expect_gt(ncol(x), 2) ## check if # of columns is greater than 2
+  expect_gt(nrow(x), 2) ## check if # of rows is greater than 2
 })

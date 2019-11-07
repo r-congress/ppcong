@@ -10,7 +10,8 @@ ppc_members(congress = "116", chamber = c("house", "senate"),
 \arguments{
 \item{congress}{The number of Congress of interest}
 
-\item{chamber}{Either "house" or "senate"}
+\item{chamber}{Specify the chamber of Congress typically "house" or "senate";
+sometimes "both" or "joint"}
 
 \item{api_key}{The actual API key string provided by ProPublica.}
 

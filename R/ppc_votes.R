@@ -18,11 +18,27 @@
 #'   the Clerk's totals.
 #' @export
 ppc_votes <- function(chamber = c("both", "house", "senate"), api_key = NULL, raw = FALSE) {
-  ppc_make_req(ppc_votes_call(chamber), api_key, raw = raw)
+  ppc_request(ppc_votes_call(chamber), api_key, raw = raw)
 }
 
 ppc_votes_call <- function(chamber = c("both", "house", "senate")) {
   ppc_base() %P% match.arg(chamber) %P% "/votes/recent.json"
 }
 
-
+ppc_parse_votes <- function(r) {
+  ppc_parse_votes_ <- function(x) {
+    if (length(x[["votes"]]) == 0) return(tibble::tibble())
+    tibble::as_tibble(cbind(cbind(
+      cbind(x$votes[sapply(x$votes, is.atomic)],
+        `names<-`(x$votes$democratic, "d_" %P% names(x$votes$democratic))),
+      `names<-`(x$votes$republican, "r_" %P% names(x$votes$republican))),
+      `names<-`(x$votes$independent, "i_" %P% names(x$votes$independent))))
+  }
+  headers <- ppc_headers(r)
+  d <- ppc_parse_votes_(ppc_parse_results(r))
+  attr(d, "headers") <- headers
+  if (nrow(d) > 0) {
+    d$ppc_request_timestamp <- ppc_request_timestamp(headers)
+  }
+  d
+}

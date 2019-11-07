@@ -4,7 +4,8 @@
 #' Retrieves congress data from api.propublica.org
 #'
 #' @param congress The number of Congress of interest
-#' @param chamber Either "house" or "senate"
+#' @param chamber Specify the chamber of Congress typically "house" or "senate";
+#'   sometimes "both" or "joint"
 #' @param api_key The actual API key string provided by ProPublica.
 #' @param raw Logical indicating whether to return the raw response object. The
 #'   default (FALSE) parses the content and returns a tibble data frame.
@@ -28,8 +29,7 @@ ppc_members <- function(congress = "116",
                         chamber = c("house", "senate"),
                         api_key = NULL,
                         raw = FALSE) {
-  ## process API request
-  ppc_make_req(ppc_members_call(congress, chamber), api_key, raw)
+  ppc_request(ppc_members_call(congress, chamber), api_key, raw)
 }
 
 
@@ -39,4 +39,23 @@ ppc_members_call <- function(congress = "116", chamber = c("house", "senate")) {
     is_congress_number(congress)
   )
   ppc_base() %P% as_congress_number(congress) %P% "/" %P% match.arg(chamber) %P% "/members.json"
+}
+
+ppc_parse_members <- function(r) {
+  headers <- ppc_headers(r)
+  d <- ppc_parse_results(r)
+  if (nrow(d) == 0 ||
+      !all(c("members", "congress", "chamber") %in% names(d))) {
+    attr(d, "headers") <- headers
+    return(d)
+  }
+  m <- d$members[[1]]
+  m$congress <- d$congress
+  m$chamber <- d$chamber
+  m$date_of_birth <- as.Date(m$date_of_birth)
+  attr(m, "headers") <- headers
+  if (nrow(m) > 0) {
+    m$ppc_request_timestamp <- ppc_request_timestamp(headers)
+  }
+  tibble::as_tibble(m)
 }

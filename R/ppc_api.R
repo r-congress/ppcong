@@ -1,10 +1,17 @@
 
-ppc_make_req <- function(url, api_key, raw) {
+ppc_request <- function(url, api_key, raw) {
   ## make request
   r <- curl::curl_fetch_memory(url, ppc_handle(api_key))
 
   ## check status / print warning if status!=200
   ppc_check_status(r)
+
+  ## store url and endpoint info
+  attr(r, "url") <- url
+  attr(r, "endpoint") <- ppc_endpoint(url)
+
+  ## set class
+  class(r) <- c("ppc_" %P% ppc_endpoint(url), "list")
 
   ## if raw then return response object
   if (raw) {

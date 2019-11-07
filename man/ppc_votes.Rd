@@ -8,7 +8,8 @@ ppc_votes(chamber = c("both", "house", "senate"), api_key = NULL,
   raw = FALSE)
 }
 \arguments{
-\item{chamber}{Either "house" or "senate"}
+\item{chamber}{Specify the chamber of Congress typically "house" or "senate";
+sometimes "both" or "joint"}
 
 \item{api_key}{The actual API key string provided by ProPublica.}
 

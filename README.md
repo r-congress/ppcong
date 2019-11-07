@@ -47,19 +47,14 @@ Get “house” data from the “116”th Congress:
 h116 <- ppc_members(congress = "116", chamber = "house")
 h116
 #> # A tibble: 444 x 49
-#>    id    title short_title api_uri first_name middle_name last_name suffix date_of_birth
-#>    <chr> <chr> <chr>       <chr>   <chr>      <chr>       <chr>     <chr>  <date>       
-#>  1 A000… Repr… Rep.        https:… Ralph      <NA>        Abraham   <NA>   1954-09-16   
-#>  2 A000… Repr… Rep.        https:… Alma       <NA>        Adams     <NA>   1946-05-27   
-#>  3 A000… Repr… Rep.        https:… Robert     B.          Aderholt  <NA>   1965-07-22   
-#>  4 A000… Repr… Rep.        https:… Pete       <NA>        Aguilar   <NA>   1979-06-19   
-#>  5 A000… Repr… Rep.        https:… Rick       <NA>        Allen     <NA>   1951-11-07   
-#>  6 A000… Repr… Rep.        https:… Colin      <NA>        Allred    <NA>   1983-04-15   
-#>  7 A000… Repr… Rep.        https:… Justin     <NA>        Amash     <NA>   1980-04-18   
-#>  8 A000… Repr… Rep.        https:… Justin     <NA>        Amash     <NA>   1980-04-18   
-#>  9 A000… Repr… Rep.        https:… Mark       <NA>        Amodei    <NA>   1958-06-12   
-#> 10 A000… Repr… Rep.        https:… Kelly      <NA>        Armstrong <NA>   1976-10-08   
-#> # … with 434 more rows, and 40 more variables: gender <chr>, party <chr>,
+#>   id    title short_title api_uri first_name middle_name last_name suffix date_of_birth
+#>   <chr> <chr> <chr>       <chr>   <chr>      <chr>       <chr>     <chr>  <date>       
+#> 1 A000… Repr… Rep.        https:… Ralph      <NA>        Abraham   <NA>   1954-09-16   
+#> 2 A000… Repr… Rep.        https:… Alma       <NA>        Adams     <NA>   1946-05-27   
+#> 3 A000… Repr… Rep.        https:… Robert     B.          Aderholt  <NA>   1965-07-22   
+#> 4 A000… Repr… Rep.        https:… Pete       <NA>        Aguilar   <NA>   1979-06-19   
+#> 5 A000… Repr… Rep.        https:… Rick       <NA>        Allen     <NA>   1951-11-07   
+#> # … with 439 more rows, and 40 more variables: gender <chr>, party <chr>,
 #> #   leadership_role <chr>, twitter_account <chr>, facebook_account <chr>,
 #> #   youtube_account <chr>, govtrack_id <chr>, cspan_id <chr>, votesmart_id <chr>,
 #> #   icpsr_id <chr>, crp_id <chr>, google_entity_id <chr>, fec_candidate_id <chr>,
@@ -79,19 +74,14 @@ Get “senate” data from the “110”th Congress:
 s110 <- ppc_members(congress = "110", chamber = "senate")
 s110
 #> # A tibble: 102 x 49
-#>    id    title short_title api_uri first_name middle_name last_name suffix date_of_birth
-#>    <chr> <chr> <chr>       <chr>   <chr>      <chr>       <chr>     <chr>  <date>       
-#>  1 A000… Sena… Sen.        https:… Daniel     K.          Akaka     <NA>   1924-09-11   
-#>  2 A000… Sena… Sen.        https:… Lamar      <NA>        Alexander <NA>   1940-07-03   
-#>  3 A000… Sena… Sen.        https:… Wayne      A.          Allard    <NA>   1943-12-02   
-#>  4 B001… Sena… Sen.        https:… John       <NA>        Barrasso  <NA>   1952-07-21   
-#>  5 B000… Sena… Sen.        https:… Max        <NA>        Baucus    <NA>   1941-12-11   
-#>  6 B001… Sena… Sen.        https:… Evan       <NA>        Bayh      <NA>   1955-12-26   
-#>  7 B000… Sena… Sen.        https:… Robert     F.          Bennett   <NA>   1933-09-18   
-#>  8 B000… Sena… Sen.        https:… Joseph     R.          Biden     Jr.    1942-11-20   
-#>  9 B000… Sena… Sen.        https:… Jeff       <NA>        Bingaman  <NA>   1943-10-03   
-#> 10 B000… Sena… Sen.        https:… Christoph… S.          Bond      <NA>   1939-03-06   
-#> # … with 92 more rows, and 40 more variables: gender <chr>, party <chr>,
+#>   id    title short_title api_uri first_name middle_name last_name suffix date_of_birth
+#>   <chr> <chr> <chr>       <chr>   <chr>      <chr>       <chr>     <chr>  <date>       
+#> 1 A000… Sena… Sen.        https:… Daniel     K.          Akaka     <NA>   1924-09-11   
+#> 2 A000… Sena… Sen.        https:… Lamar      <NA>        Alexander <NA>   1940-07-03   
+#> 3 A000… Sena… Sen.        https:… Wayne      A.          Allard    <NA>   1943-12-02   
+#> 4 B001… Sena… Sen.        https:… John       <NA>        Barrasso  <NA>   1952-07-21   
+#> 5 B000… Sena… Sen.        https:… Max        <NA>        Baucus    <NA>   1941-12-11   
+#> # … with 97 more rows, and 40 more variables: gender <chr>, party <chr>,
 #> #   leadership_role <lgl>, twitter_account <chr>, facebook_account <chr>,
 #> #   youtube_account <chr>, govtrack_id <chr>, cspan_id <chr>, votesmart_id <chr>,
 #> #   icpsr_id <chr>, crp_id <chr>, google_entity_id <chr>, fec_candidate_id <chr>,
@@ -113,19 +103,14 @@ Get statements released by members of Congress by date
 sts <- ppc_statements("2017-05-08")
 sts
 #> # A tibble: 228 x 13
-#>    url   date  title statement_type member_id congress member_uri name  chamber state
-#>    <chr> <chr> <chr> <chr>          <chr>        <int> <chr>      <chr> <chr>   <chr>
-#>  1 http… 2017… Enge… Press Release  E000179        115 https://a… Elio… House   NY   
-#>  2 http… 2017… Benn… Press Release  B001267        115 https://a… Mich… Senate  CO   
-#>  3 http… 2017… Benn… Press Release  B001267        115 https://a… Mich… Senate  CO   
-#>  4 http… 2017… Sull… Press Release  S001198        115 https://a… Dan … Senate  AK   
-#>  5 http… 2017… Roun… Press Release  R000605        115 https://a… Mike… Senate  SD   
-#>  6 http… 2017… Pete… Press Release  P000595        115 https://a… Gary… Senate  MI   
-#>  7 http… 2017… Lawm… Press Release  U000039        115 https://a… Tom … Senate  NM   
-#>  8 http… 2017… Van … Press Release  V000128        115 https://a… Chri… Senate  MD   
-#>  9 http… 2017… Van … Press Release  V000128        115 https://a… Chri… Senate  MD   
-#> 10 http… 2017… Van … Press Release  V000128        115 https://a… Chri… Senate  MD   
-#> # … with 218 more rows, and 3 more variables: party <chr>, subjects <list>,
+#>   url   date  title statement_type member_id congress member_uri name  chamber state party
+#>   <chr> <chr> <chr> <chr>          <chr>        <int> <chr>      <chr> <chr>   <chr> <chr>
+#> 1 http… 2017… Enge… Press Release  E000179        115 https://a… Elio… House   NY    D    
+#> 2 http… 2017… Benn… Press Release  B001267        115 https://a… Mich… Senate  CO    D    
+#> 3 http… 2017… Benn… Press Release  B001267        115 https://a… Mich… Senate  CO    D    
+#> 4 http… 2017… Sull… Press Release  S001198        115 https://a… Dan … Senate  AK    R    
+#> 5 http… 2017… Roun… Press Release  R000605        115 https://a… Mike… Senate  SD    R    
+#> # … with 223 more rows, and 2 more variables: subjects <list>,
 #> #   ppc_request_timestamp <dttm>
 ```
 
@@ -138,33 +123,64 @@ Get statements released by members of Congress by date
 vts <- ppc_votes()
 vts
 #> # A tibble: 20 x 29
-#>    congress chamber session roll_call source url   vote_uri question question_text
-#>       <int> <chr>     <int>     <int> <chr>  <chr> <chr>    <chr>    <chr>        
-#>  1      116 Senate        1       347 https… http… https:/… On the … On the Clotu…
-#>  2      116 Senate        1       346 https… http… https:/… On the … On the Clotu…
-#>  3      116 Senate        1       345 https… http… https:/… On the … On the Clotu…
-#>  4      116 Senate        1       344 https… http… https:/… On the … On the Nomin…
-#>  5      116 Senate        1       343 https… http… https:/… On the … On the Clotu…
-#>  6      116 Senate        1       342 https… http… https:/… On the … On the Clotu…
-#>  7      116 Senate        1       341 https… http… https:/… On Pass… On Passage o…
-#>  8      116 House         1       609 http:… http… https:/… On Pass… ""           
-#>  9      116 House         1       608 http:… http… https:/… On Moti… ""           
-#> 10      116 Senate        1       340 https… http… https:/… On the … On the Amend…
-#> 11      116 House         1       607 http:… http… https:/… On Agre… ""           
-#> 12      116 House         1       606 http:… http… https:/… On Agre… ""           
-#> 13      116 House         1       605 http:… http… https:/… On Agre… ""           
-#> 14      116 Senate        1       339 https… http… https:/… On the … On the Amend…
-#> 15      116 House         1       604 http:… http… https:/… On Agre… ""           
-#> 16      116 House         1       603 http:… http… https:/… On Orde… ""           
-#> 17      116 House         1       602 http:… http… https:/… On Pass… ""           
-#> 18      116 House         1       601 http:… http… https:/… On Moti… ""           
-#> 19      116 House         1       600 http:… http… https:/… On Agre… ""           
-#> 20      116 House         1       599 http:… http… https:/… On Agre… ""           
-#> # … with 20 more variables: description <chr>, vote_type <chr>, date <chr>, time <chr>,
-#> #   result <chr>, d_yes <int>, d_no <int>, d_present <int>, d_not_voting <int>,
-#> #   d_majority_position <chr>, r_yes <int>, r_no <int>, r_present <int>,
-#> #   r_not_voting <int>, r_majority_position <chr>, i_yes <int>, i_no <int>,
-#> #   i_present <int>, i_not_voting <int>, ppc_request_timestamp <dttm>
+#>   congress chamber session roll_call source url   vote_uri question question_text
+#>      <int> <chr>     <int>     <int> <chr>  <chr> <chr>    <chr>    <chr>        
+#> 1      116 Senate        1       349 https… http… https:/… On the … On the Clotu…
+#> 2      116 Senate        1       348 https… http… https:/… On the … On the Nomin…
+#> 3      116 Senate        1       347 https… http… https:/… On the … On the Clotu…
+#> 4      116 Senate        1       346 https… http… https:/… On the … On the Clotu…
+#> 5      116 Senate        1       345 https… http… https:/… On the … On the Clotu…
+#> # … with 15 more rows, and 20 more variables: description <chr>, vote_type <chr>,
+#> #   date <chr>, time <chr>, result <chr>, d_yes <int>, d_no <int>, d_present <int>,
+#> #   d_not_voting <int>, d_majority_position <chr>, r_yes <int>, r_no <int>,
+#> #   r_present <int>, r_not_voting <int>, r_majority_position <chr>, i_yes <int>,
+#> #   i_no <int>, i_present <int>, i_not_voting <int>, ppc_request_timestamp <dttm>
+```
+
+## Bills
+
+Search for bills in Congress
+
+``` r
+## get and preview house data from 116th congress
+bls <- ppc_bills()
+bls
+#> # A tibble: 20 x 34
+#>   bill_id bill_slug bill_type number bill_uri title short_title sponsor_title sponsor_id
+#>   <chr>   <chr>     <chr>     <chr>  <chr>    <chr> <chr>       <chr>         <chr>     
+#> 1 hr4982… hr4982    hr        H.R.4… https:/… To a… To amend t… Rep.          B001298   
+#> 2 hr4984… hr4984    hr        H.R.4… https:/… To i… To increas… Rep.          C001067   
+#> 3 s2780-… s2780     s         S.2780 https:/… A bi… A bill to … Sen.          W000437   
+#> 4 s2782-… s2782     s         S.2782 https:/… A bi… A bill to … Sen.          C000127   
+#> 5 s2781-… s2781     s         S.2781 https:/… A bi… A bill to … Sen.          K000393   
+#> # … with 15 more rows, and 26 more variables: sponsor_name <chr>, sponsor_state <chr>,
+#> #   sponsor_party <chr>, sponsor_uri <chr>, gpo_pdf_uri <lgl>, congressdotgov_url <chr>,
+#> #   govtrack_url <chr>, introduced_date <chr>, active <lgl>, last_vote <lgl>,
+#> #   house_passage <lgl>, senate_passage <lgl>, enacted <lgl>, vetoed <lgl>,
+#> #   cosponsors <int>, cosponsors_by_party$D <int>, $R <int>, committees <chr>,
+#> #   committee_codes <list>, subcommittee_codes <list>, primary_subject <chr>,
+#> #   summary <chr>, summary_short <chr>, latest_major_action_date <chr>,
+#> #   latest_major_action <chr>, ppc_request_timestamp <dttm>
+```
+
+## Committees
+
+Get lists of congressional committees
+
+``` r
+## get and preview house data from 116th congress
+cmt <- ppc_committees()
+cmt
+#> # A tibble: 5 x 13
+#>   id    name  chamber url   api_uri chair chair_id chair_party chair_state chair_uri
+#>   <chr> <chr> <chr>   <chr> <chr>   <chr> <chr>    <chr>       <chr>       <chr>    
+#> 1 JCSE  Comm… Joint   http… https:… Alce… H000324  D           FL          https://…
+#> 2 JSPR  Join… Joint   http… https:… <NA>  <NA>     <NA>        <NA>        <NA>     
+#> 3 JSTX  Join… Joint   http… https:… <NA>  <NA>     <NA>        <NA>        <NA>     
+#> 4 JSLC  Join… Joint   http… https:… <NA>  <NA>     <NA>        <NA>        <NA>     
+#> 5 JSEC  Join… Joint   http… https:… <NA>  <NA>     <NA>        <NA>        <NA>     
+#> # … with 3 more variables: ranking_member_id <lgl>, subcommittees <list>,
+#> #   ppc_request_timestamp <dttm>
 ```
 
 ## API Key
