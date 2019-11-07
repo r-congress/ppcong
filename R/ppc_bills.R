@@ -21,7 +21,7 @@ ppc_bills_call <- function(query) {
     is.character(query),
     length(query) == 1L
   )
-  ppc_base() %P% "bills/search.json?query=" %P% URLdecode(query)
+  ppc_base() %P% "bills/search.json?query=" %P% utils::URLdecode(query)
 }
 
 ppc_parse_bills <- function(r) {
