@@ -16,6 +16,9 @@ sometimes "both" or "joint"}
 \item{raw}{Logical indicating whether to return the raw response object. The
 default (FALSE) parses the content and returns a tibble data frame.}
 }
+\value{
+A data frame of congressional votes information
+}
 \description{
 Get Recent Votes
 }
@@ -32,6 +35,10 @@ the Clerk's totals.
 }
 \examples{
 \dontrun{
-ppc_votes()
+## get votes from only the house
+hv <- ppc_votes("house")
+
+## get votes from the house and the senate
+hsv <- ppc_votes("both")
 }
 }

@@ -6,9 +6,10 @@
 #' @inheritParams ppc_members
 #' @examples
 #' \dontrun{
-#' ppc_votes()
+#' ## get committes info for house members in 115th congress
+#' h115com <- ppc_committees("115", "house")
 #' }
-#' @details To get lists of recent statements published on congressional websites, use the following URI structure. This request returns the 20 most recent results and supports pagination using multiples of 20.
+#' @return A data frame of congressional committees information
 #' @export
 ppc_committees <- function(congress = "116", chamber = c("joint", "house", "senate"),
                            api_key = NULL, raw = FALSE) {

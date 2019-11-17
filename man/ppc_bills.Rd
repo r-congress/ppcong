@@ -14,14 +14,15 @@ ppc_bills(query = "", api_key = NULL, raw = FALSE)
 \item{raw}{Logical indicating whether to return the raw response object. The
 default (FALSE) parses the content and returns a tibble data frame.}
 }
+\value{
+A data frame of congressional bills information
+}
 \description{
 Search Bills
 }
-\details{
-To get lists of recent statements published on congressional websites, use the following URI structure. This request returns the 20 most recent results and supports pagination using multiples of 20.
-}
 \examples{
 \dontrun{
-ppc_votes()
+## get information on legislation about health care
+hc <- ppc_bills("health care")
 }
 }

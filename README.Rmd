@@ -77,8 +77,8 @@ sts
 Get statements released by members of Congress by date
 
 ```{r}
-## get and preview house data from 116th congress
-vts <- ppc_votes()
+## get and preview congressional votes information
+vts <- ppc_votes("both")
 vts
 ```
 
@@ -88,9 +88,9 @@ vts
 Search for bills in Congress
 
 ```{r}
-## get and preview house data from 116th congress
-bls <- ppc_bills()
-bls
+## get and preview congressional bills information
+hc_bls <- ppc_bills("health care")
+hc_bls
 ```
 
 
@@ -99,8 +99,8 @@ bls
 Get lists of congressional committees
 
 ```{r}
-## get and preview house data from 116th congress
-cmt <- ppc_committees()
+## get and preview committees information for Senators in 115th Congress
+cmt <- ppc_committees("115", chamber = "senate")
 cmt
 ```
 

@@ -21,6 +21,8 @@ default (FALSE) parses the content and returns a tibble data frame.}
 \value{
 Depending on the raw parameter, this function returns a tibble data
 frame with member information or the response object returned by curl
+
+A data frame of congressional members information
 }
 \description{
 Retrieves congress data from api.propublica.org

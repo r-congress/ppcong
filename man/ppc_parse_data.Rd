@@ -11,7 +11,18 @@ ppc_parse_data(r)
 }
 \value{
 A tibble with headers attribute
+
+A data frame of congressional information
 }
 \description{
 Converts ProPublica API response into a tibble (data frame)
+}
+\examples{
+\dontrun{
+## get votes data–return the raw response object
+v <- ppc_votes("senate", raw = TRUE)
+
+## convert response object into data frame
+ppc_parse_data(v)
+}
 }

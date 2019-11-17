@@ -119,17 +119,17 @@ sts
 Get statements released by members of Congress by date
 
 ``` r
-## get and preview house data from 116th congress
-vts <- ppc_votes()
+## get and preview congressional votes information
+vts <- ppc_votes("both")
 vts
 #> # A tibble: 20 x 29
 #>   congress chamber session roll_call source url   vote_uri question question_text
 #>      <int> <chr>     <int>     <int> <chr>  <chr> <chr>    <chr>    <chr>        
-#> 1      116 Senate        1       349 https… http… https:/… On the … On the Clotu…
-#> 2      116 Senate        1       348 https… http… https:/… On the … On the Nomin…
-#> 3      116 Senate        1       347 https… http… https:/… On the … On the Clotu…
-#> 4      116 Senate        1       346 https… http… https:/… On the … On the Clotu…
-#> 5      116 Senate        1       345 https… http… https:/… On the … On the Clotu…
+#> 1      116 House         1       624 http:… http… https:/… On Pass… ""           
+#> 2      116 House         1       623 http:… http… https:/… On Moti… ""           
+#> 3      116 House         1       622 http:… http… https:/… On Agre… ""           
+#> 4      116 House         1       621 http:… http… https:/… On Agre… ""           
+#> 5      116 House         1       620 http:… http… https:/… On Agre… ""           
 #> # … with 15 more rows, and 20 more variables: description <chr>, vote_type <chr>,
 #> #   date <chr>, time <chr>, result <chr>, d_yes <int>, d_no <int>, d_present <int>,
 #> #   d_not_voting <int>, d_majority_position <chr>, r_yes <int>, r_no <int>,
@@ -142,20 +142,20 @@ vts
 Search for bills in Congress
 
 ``` r
-## get and preview house data from 116th congress
-bls <- ppc_bills()
-bls
+## get and preview congressional bills information
+hc_bls <- ppc_bills("health care")
+hc_bls
 #> # A tibble: 20 x 34
 #>   bill_id bill_slug bill_type number bill_uri title short_title sponsor_title sponsor_id
 #>   <chr>   <chr>     <chr>     <chr>  <chr>    <chr> <chr>       <chr>         <chr>     
-#> 1 hr4982… hr4982    hr        H.R.4… https:/… To a… To amend t… Rep.          B001298   
-#> 2 hr4984… hr4984    hr        H.R.4… https:/… To i… To increas… Rep.          C001067   
-#> 3 s2780-… s2780     s         S.2780 https:/… A bi… A bill to … Sen.          W000437   
-#> 4 s2782-… s2782     s         S.2782 https:/… A bi… A bill to … Sen.          C000127   
-#> 5 s2781-… s2781     s         S.2781 https:/… A bi… A bill to … Sen.          K000393   
+#> 1 hr4863… hr4863    hr        H.R.4… https:/… To p… United Sta… Rep.          W000187   
+#> 2 s2860-… s2860     s         S.2860 https:/… A bi… A bill to … Sen.          L000575   
+#> 3 hres70… hres703   hres      H.RES… https:/… "Sup… "Supportin… Rep.          R000602   
+#> 4 hres70… hres704   hres      H.RES… https:/… Expr… "Expressin… Rep.          S001206   
+#> 5 sres41… sres415   sres      S.RES… https:/… A re… A resoluti… Sen.          W000817   
 #> # … with 15 more rows, and 26 more variables: sponsor_name <chr>, sponsor_state <chr>,
 #> #   sponsor_party <chr>, sponsor_uri <chr>, gpo_pdf_uri <lgl>, congressdotgov_url <chr>,
-#> #   govtrack_url <chr>, introduced_date <chr>, active <lgl>, last_vote <lgl>,
+#> #   govtrack_url <chr>, introduced_date <chr>, active <lgl>, last_vote <chr>,
 #> #   house_passage <lgl>, senate_passage <lgl>, enacted <lgl>, vetoed <lgl>,
 #> #   cosponsors <int>, cosponsors_by_party$D <int>, $R <int>, committees <chr>,
 #> #   committee_codes <list>, subcommittee_codes <list>, primary_subject <chr>,
@@ -168,19 +168,19 @@ bls
 Get lists of congressional committees
 
 ``` r
-## get and preview house data from 116th congress
-cmt <- ppc_committees()
+## get and preview committees information for Senators in 115th Congress
+cmt <- ppc_committees("115", chamber = "senate")
 cmt
-#> # A tibble: 5 x 13
+#> # A tibble: 21 x 13
 #>   id    name  chamber url   api_uri chair chair_id chair_party chair_state chair_uri
 #>   <chr> <chr> <chr>   <chr> <chr>   <chr> <chr>    <chr>       <chr>       <chr>    
-#> 1 JCSE  Comm… Joint   http… https:… Alce… H000324  D           FL          https://…
-#> 2 JSPR  Join… Joint   http… https:… <NA>  <NA>     <NA>        <NA>        <NA>     
-#> 3 JSTX  Join… Joint   http… https:… <NA>  <NA>     <NA>        <NA>        <NA>     
-#> 4 JSLC  Join… Joint   http… https:… <NA>  <NA>     <NA>        <NA>        <NA>     
-#> 5 JSEC  Join… Joint   http… https:… <NA>  <NA>     <NA>        <NA>        <NA>     
-#> # … with 3 more variables: ranking_member_id <lgl>, subcommittees <list>,
-#> #   ppc_request_timestamp <dttm>
+#> 1 SSAF  Comm… Senate  http… https:… Pat … R000307  R           KS          https://…
+#> 2 SSAP  Comm… Senate  http… https:… Thad… C000567  R           MS          https://…
+#> 3 SSAS  Comm… Senate  http… https:… John… M000303  R           AZ          https://…
+#> 4 SSBK  Comm… Senate  http… https:… Mich… C000880  R           ID          https://…
+#> 5 SSCM  Comm… Senate  http… https:… John… T000250  R           SD          https://…
+#> # … with 16 more rows, and 3 more variables: ranking_member_id <chr>,
+#> #   subcommittees <list>, ppc_request_timestamp <dttm>
 ```
 
 ## API Key

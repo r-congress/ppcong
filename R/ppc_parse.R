@@ -5,6 +5,15 @@
 #'
 #' @param r Reponse from ProPublica API
 #' @return A tibble with headers attribute
+#' @examples
+#' \dontrun{
+#' ## get votes data–return the raw response object
+#' v <- ppc_votes("senate", raw = TRUE)
+#'
+#' ## convert response object into data frame
+#' ppc_parse_data(v)
+#' }
+#' @return A data frame of congressional information
 #' @export
 ppc_parse_data <- function(r) {
   UseMethod("ppc_parse_data")

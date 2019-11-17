@@ -15,14 +15,15 @@ format of YYYY-MM-DD.}
 \item{raw}{Logical indicating whether to return the raw response object. The
 default (FALSE) parses the content and returns a tibble data frame.}
 }
+\value{
+A data frame of congressional statements information
+}
 \description{
 Get Recent Congressional Statements
 }
-\details{
-To get lists of recent statements published on congressional websites, use the following URI structure. This request returns the 20 most recent results and supports pagination using multiples of 20.
-}
 \examples{
-\dontrun{
-ppc_votes()
+#' \dontrun{
+## get all statements from may 7th, 2018
+may72018 <- ppc_statements("2018-05-07")
 }
 }

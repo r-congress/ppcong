@@ -24,6 +24,7 @@
 #' h116 <- ppc_congress(congress = "116", chamber = "house")
 #' }
 #' @seealso \url{https://projects.propublica.org/api-docs/congress-api/}
+#' @return A data frame of congressional members information
 #' @export
 ppc_members <- function(congress = "116",
                         chamber = c("house", "senate"),

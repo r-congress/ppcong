@@ -6,10 +6,11 @@
 #'   format of YYYY-MM-DD.
 #' @inheritParams ppc_members
 #' @examples
-#' \dontrun{
-#' ppc_votes()
+#' #' \dontrun{
+#' ## get all statements from may 7th, 2018
+#' may72018 <- ppc_statements("2018-05-07")
 #' }
-#' @details To get lists of recent statements published on congressional websites, use the following URI structure. This request returns the 20 most recent results and supports pagination using multiples of 20.
+#' @return A data frame of congressional statements information
 #' @export
 ppc_statements <- function(date = NULL, api_key = NULL, raw = FALSE) {
   ppc_statements_all_day(date, api_key, raw)

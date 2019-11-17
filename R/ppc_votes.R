@@ -5,7 +5,11 @@
 #' @inheritParams ppc_members
 #' @examples
 #' \dontrun{
-#' ppc_votes()
+#' ## get votes from only the house
+#' hv <- ppc_votes("house")
+#'
+#' ## get votes from the house and the senate
+#' hsv <- ppc_votes("both")
 #' }
 #' @details By tradition, the Speaker of the House votes at his or her
 #'   discretion, and typically does not vote. When the Speaker does vote, the
@@ -16,6 +20,7 @@
 #'   voting by one (both in the Speaker's party and overall). In those cases,
 #'   the not voting totals provided by the API for House votes will not match
 #'   the Clerk's totals.
+#' @return A data frame of congressional votes information
 #' @export
 ppc_votes <- function(chamber = c("both", "house", "senate"), api_key = NULL, raw = FALSE) {
   ppc_request(ppc_votes_call(chamber), api_key, raw = raw)

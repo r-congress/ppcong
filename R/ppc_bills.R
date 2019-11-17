@@ -7,9 +7,10 @@
 #' @inheritParams ppc_members
 #' @examples
 #' \dontrun{
-#' ppc_votes()
+#' ## get information on legislation about health care
+#' hc <- ppc_bills("health care")
 #' }
-#' @details To get lists of recent statements published on congressional websites, use the following URI structure. This request returns the 20 most recent results and supports pagination using multiples of 20.
+#' @return A data frame of congressional bills information
 #' @export
 ppc_bills <- function(query = "", api_key = NULL, raw = FALSE) {
   ppc_request(ppc_bills_call(query), api_key, raw)
@@ -21,7 +22,7 @@ ppc_bills_call <- function(query) {
     is.character(query),
     length(query) == 1L
   )
-  ppc_base() %P% "bills/search.json?query=" %P% utils::URLdecode(query)
+  ppc_base() %P% "bills/search.json?query=" %P% utils::URLencode(query)
 }
 
 ppc_parse_bills <- function(r) {

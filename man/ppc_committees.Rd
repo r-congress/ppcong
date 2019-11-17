@@ -18,14 +18,15 @@ sometimes "both" or "joint"}
 \item{raw}{Logical indicating whether to return the raw response object. The
 default (FALSE) parses the content and returns a tibble data frame.}
 }
+\value{
+A data frame of congressional committees information
+}
 \description{
 Lists of Committees
 }
-\details{
-To get lists of recent statements published on congressional websites, use the following URI structure. This request returns the 20 most recent results and supports pagination using multiples of 20.
-}
 \examples{
 \dontrun{
-ppc_votes()
+## get committes info for house members in 115th congress
+h115com <- ppc_committees("115", "house")
 }
 }
