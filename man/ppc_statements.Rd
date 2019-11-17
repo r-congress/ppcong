@@ -22,7 +22,7 @@ A data frame of congressional statements information
 Get Recent Congressional Statements
 }
 \examples{
-#' \dontrun{
+\dontrun{
 ## get all statements from may 7th, 2018
 may72018 <- ppc_statements("2018-05-07")
 }

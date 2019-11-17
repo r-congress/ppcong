@@ -6,7 +6,7 @@
 #'   format of YYYY-MM-DD.
 #' @inheritParams ppc_members
 #' @examples
-#' #' \dontrun{
+#' \dontrun{
 #' ## get all statements from may 7th, 2018
 #' may72018 <- ppc_statements("2018-05-07")
 #' }
