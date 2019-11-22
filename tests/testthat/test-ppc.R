@@ -94,3 +94,19 @@ test_that("ppc_statements works", {
   expect_gt(ncol(x), 2) ## check if # of columns is greater than 2
   expect_gt(nrow(x), 2) ## check if # of rows is greater than 2
 })
+
+
+test_that("ppc_api functions work", {
+  skip_on_cran()
+
+  ## forget API key
+  expect_warning(
+    ppcong:::ppc_request("https://api.propublica.org/congress/v1/congress.json",
+      api_key = NULL, FALSE)
+  )
+
+  ## invalid congress number
+  expect_error(
+    ppc_members(-120, raw = TRUE)
+  )
+})

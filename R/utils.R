@@ -24,9 +24,11 @@ as_congress_number <- function(x) {
   sub("(?<=\\d)[[:alpha:]]+$", "", x, perl = TRUE)
 }
 
-
 ppc_response_text <- function(x) {
-  enc2utf8(readBin(x, character()))
+  if ("content" %in% names(x)) {
+    x <- x[["content"]]
+  }
+  paste(rawToChar(x, multiple = TRUE), collapse = "")
 }
 
 ppc_response_parsed <- function(x) {

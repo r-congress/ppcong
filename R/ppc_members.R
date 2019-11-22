@@ -50,12 +50,15 @@ ppc_parse_members <- function(r) {
     attr(d, "headers") <- headers
     return(d)
   }
-  m <- d$members[[1]]
-  m$congress <- d$congress
-  m$chamber <- d$chamber
-  m$date_of_birth <- as.Date(m$date_of_birth)
+  m <- d[["members"]][[1]]
+  if (is.null(m)) {
+    m <- tibble::tibble()
+  }
   attr(m, "headers") <- headers
-  if (nrow(m) > 0) {
+  if (NROW(m) > 0) {
+    m$congress <- d$congress
+    m$chamber <- d$chamber
+    m$date_of_birth <- as.Date(m$date_of_birth)
     m$ppc_request_timestamp <- ppc_request_timestamp(headers)
   }
   tibble::as_tibble(m)

@@ -27,6 +27,9 @@ ppc_committees_call <- function(congress = "116", chamber = c("joint", "house", 
 ppc_parse_committees <- function(r) {
   headers <- ppc_headers(r)
   d <- ppc_parse_results(r)[["committees"]][[1]]
+  if (is.null(d)) {
+    d <- tibble::tibble()
+  }
   attr(d, "headers") <- headers
   if (nrow(d) > 0) {
     d$ppc_request_timestamp <- ppc_request_timestamp(headers)

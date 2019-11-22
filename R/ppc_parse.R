@@ -46,7 +46,7 @@ ppc_parse_data.ppc_bills <- function(r) {
 
 #' @export
 ppc_parse_data.default <- function(r) {
-  ppc_parse_bills(r)
+  ppc_parse_default(r)
 }
 
 
@@ -67,8 +67,12 @@ ppc_endpoint <- function(u) {
 }
 
 ppc_parse_results <- function(r) {
-  tryCatch(jsonlite::fromJSON(rawToChar(r[["content"]]))[["results"]],
+  x <- tryCatch(ppc_response_parsed(r)[["results"]],
     error = function(e) tibble::tibble())
+  if (is.null(x)) {
+    x <- tibble::tibble()
+  }
+  x
 }
 
 ppc_request_timestamp <- function(headers) {

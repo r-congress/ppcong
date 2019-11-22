@@ -28,6 +28,9 @@ ppc_bills_call <- function(query) {
 ppc_parse_bills <- function(r) {
   headers <- ppc_headers(r)
   d <- ppc_parse_results(r)[["bills"]][[1]]
+  if (is.null(d)) {
+    d <- tibble::tibble()
+  }
   attr(d, "headers") <- headers
   if (nrow(d) > 0) {
     d$ppc_request_timestamp <- ppc_request_timestamp(headers)

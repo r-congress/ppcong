@@ -31,3 +31,10 @@ however via Travis-CI and AppVeyor.
 >functions results in the documentation.
 
 Basic descriptions of return values have been added to all exported functions
+
+## Previous submission #3
+
+> Thanks, please write package names, software names and API names
+> ('Congress') in single quotes in Title and Description.
+
+This has now been fixed in both DESCRIPTION and title

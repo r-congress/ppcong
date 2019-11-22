@@ -1,5 +1,5 @@
 Package: ppcong
-Title: Interfacing with ProPublica's Congress API
+Title: Interfacing with ProPublica's 'Congress' API
 Version: 0.0.1
 Authors@R: c(
     person("Michael W.", "Kearney", ,
