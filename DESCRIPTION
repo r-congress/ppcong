@@ -21,7 +21,7 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 Imports: 
     curl,
-    tfse,
+    tfse (>= 0.5.0),
     jsonlite,
     tibble,
     utils
