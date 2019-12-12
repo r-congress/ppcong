@@ -4,14 +4,18 @@
 \alias{ppc_members}
 \title{Get Congress data from ProPublica's API}
 \usage{
-ppc_members(congress = "116", chamber = c("house", "senate"),
-  api_key = NULL, raw = FALSE)
+ppc_members(
+  chamber = c("both", "house", "senate"),
+  congress = "116",
+  api_key = NULL,
+  raw = FALSE
+)
 }
 \arguments{
-\item{congress}{The number of Congress of interest}
-
 \item{chamber}{Specify the chamber of Congress typically "house" or "senate";
 sometimes "both" or "joint"}
+
+\item{congress}{The number of Congress of interest}
 
 \item{api_key}{The actual API key string provided by ProPublica.}
 

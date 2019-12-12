@@ -23,6 +23,17 @@ test_that("ppc_members works", {
     ppc_members(api_key = "") ## no api_key
   )
 
+  ## input flexibility tests
+  s <- ppc_members(116, "senate")
+  expect_true(is.data.frame(s))
+  expect_gt(nrow(s), 90)
+  expect_true(all(tolower(s$chamber) == "senate"))
+  expect_true(all(s$congress == "116"))
+  s <- ppc_members("senate", 115)
+  expect_true(is.data.frame(s))
+  expect_gt(nrow(s), 90)
+  expect_true(all(tolower(s$chamber) == "senate"))
+  expect_true(all(s$congress == "115"))
 })
 
 

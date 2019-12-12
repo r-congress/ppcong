@@ -4,8 +4,7 @@
 \alias{ppc_votes}
 \title{Votes}
 \usage{
-ppc_votes(chamber = c("both", "house", "senate"), api_key = NULL,
-  raw = FALSE)
+ppc_votes(chamber = c("both", "house", "senate"), api_key = NULL, raw = FALSE)
 }
 \arguments{
 \item{chamber}{Specify the chamber of Congress typically "house" or "senate";

@@ -4,8 +4,12 @@
 \alias{ppc_committees}
 \title{Committees}
 \usage{
-ppc_committees(congress = "116", chamber = c("joint", "house",
-  "senate"), api_key = NULL, raw = FALSE)
+ppc_committees(
+  congress = "116",
+  chamber = c("joint", "house", "senate"),
+  api_key = NULL,
+  raw = FALSE
+)
 }
 \arguments{
 \item{congress}{The number of Congress of interest}

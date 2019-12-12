@@ -20,6 +20,12 @@ is_congress_number <- function(x) {
   is.atomic(x) && length(x) == 1 && grepl("^1\\d{2}(th|st|rd|nd)?$", x)
 }
 
+## validation function for chamber
+is_chamber <- function(x) {
+  is.character(x) && tolower(x[1]) %in% c("h", "s", "house", "senate", "b", "both", "sen", "rep")
+}
+
+
 as_congress_number <- function(x) {
   sub("(?<=\\d)[[:alpha:]]+$", "", x, perl = TRUE)
 }

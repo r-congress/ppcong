@@ -8,7 +8,7 @@ Authors@R: c(
     person("Lingshu", "Hu", ,
       role = c("ctb"),
       comment = c(ORCID = "0000-0003-0304-882X")),
-    person("Alevia", "Iuliia", ,
+    person("Alieva", "Iuliia", ,
       role = c("ctb"),
       comment = c(ORCID = "0000-0001-6270-8985"))
     )
@@ -25,7 +25,7 @@ Imports:
     jsonlite,
     tibble,
     utils
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 URL: https://github.com/mkearney/ppcong
 BugReports: https://github.com/mkearney/ppcong/issues
 Suggests: 

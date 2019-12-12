@@ -3,9 +3,9 @@
 #'
 #' Retrieves congress data from api.propublica.org
 #'
-#' @param congress The number of Congress of interest
 #' @param chamber Specify the chamber of Congress typically "house" or "senate";
 #'   sometimes "both" or "joint"
+#' @param congress The number of Congress of interest
 #' @param api_key The actual API key string provided by ProPublica.
 #' @param raw Logical indicating whether to return the raw response object. The
 #'   default (FALSE) parses the content and returns a tibble data frame.
@@ -26,19 +26,81 @@
 #' @seealso \url{https://projects.propublica.org/api-docs/congress-api/}
 #' @return A data frame of congressional members information
 #' @export
-ppc_members <- function(congress = "116",
-                        chamber = c("house", "senate"),
+ppc_members <- function(chamber = c("both", "house", "senate"),
+                        congress = "116",
                         api_key = NULL,
                         raw = FALSE) {
-  ppc_request(ppc_members_call(congress, chamber), api_key, raw)
+  UseMethod("ppc_members")
 }
 
 
-## build the call URL
-ppc_members_call <- function(congress = "116", chamber = c("house", "senate")) {
+#' @export
+ppc_members.numeric <- function(chamber = c("both", "house", "senate"),
+                                congress = "116",
+                                api_key = NULL,
+                                raw = FALSE) {
+  cong <- as.character(chamber)
+  if (is_chamber(congress)) {
+    chamber <- congress
+  } else {
+    chamber <- "both"
+  }
+  congress <- cong
+  ppc_members(chamber, congress, api_key, raw)
+}
+
+#' @export
+ppc_members.default <- function(chamber = c("both", "house", "senate"),
+                                congress = "116",
+                                api_key = NULL,
+                                raw = FALSE) {
+  ## if congress number is provided first
+  if (length(chamber) == 1 &&
+      is_congress_number(chamber) &&
+      tolower(congress) %in% c("house", "senate", "h", "s", "sen", "rep")) {
+    cham <- congress
+    congress <- chamber
+    chamber <- cham
+  } else if (length(chamber) == 1 && is_congress_number(chamber)) {
+    congress <- chamber
+    chamber <- "both"
+  }
   stopifnot(
+    is_chamber(chamber),
     is_congress_number(congress)
   )
+  chamber <- switch(tolower(chamber[1]),
+    b = 'both',
+    both = 'both',
+    h = 'house',
+    rep = 'house',
+    house = 'house',
+    s = 'senate',
+    sen = 'senate',
+    senate = 'senate')
+  if (chamber == "both") {
+    h <- ppc_request(ppc_members_call("house", congress), api_key, raw)
+    s <- ppc_request(ppc_members_call("senate", congress), api_key, raw)
+    if (!raw) {
+      hvars <- names(h)
+      svars <- names(s)
+      hv <- hvars[!hvars %in% svars]
+      for (i in seq_along(hv)) {
+        s[[hv[i]]] <- NA
+      }
+      sv <- svars[!svars %in% hvars]
+      for (i in seq_along(sv)) {
+        h[[sv[i]]] <- NA
+      }
+      return(rbind(h, s))
+    }
+    return(list(house = h, senate = s))
+  }
+  ppc_request(ppc_members_call(chamber, congress), api_key, raw)
+}
+
+## build the call URL
+ppc_members_call <- function(chamber = c("house", "senate"), congress = "116") {
   ppc_base() %P% as_congress_number(congress) %P% "/" %P% match.arg(chamber) %P% "/members.json"
 }
 
