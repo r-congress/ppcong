@@ -1,0 +1,14 @@
+
+template:
+  ganalytics: "UA-124886828-1"
+
+authors:
+  - Michael W. Kearney:
+    href: https://mikewk.com
+  - Lingshu Hu
+  - Iuliia Alieva
+navbar:
+  right:
+  - icon: fa-github fa-lg
+    href: https://github.com/r-congress/ppcong
+
